@@ -10,6 +10,7 @@ body {
 }
 
 h1 {
+    text-align: center;
     font-family: Georgia;
     color: #FFF;
     font-size: 2em;
