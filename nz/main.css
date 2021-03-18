@@ -16,10 +16,9 @@ header p {
     margin-top: -2em;
 }
 
-.white, 
+.white,
 .white a:link,
-.white a:visited
-{
+.white a:visited {
     color: white;
 }
 
@@ -35,4 +34,28 @@ a:visited {
 header address {
     font-size: 0.9em;
     font-style: italic;
+}
+
+main {
+    max-width: 70%;
+    margin: auto;
+}
+
+main p {
+    text-align: justify;
+}
+
+main figure {
+    margin-left: 0;
+    width: 100%;
+}
+
+main figure img {
+    border: 1px solid black
+}
+
+#map {
+    height: 360px;
+    width: 100%;
+    border: 1px solid gray;
 }
