@@ -1,12 +1,22 @@
+let stop = {
+    nr: 20,
+    name: "Wellington",
+    lat: -41.2875,
+    lng: 174.776111,
+    user: "geo6371",
+    wikipedia: "https://de.wikipedia.org/wiki/Wellington"
+}
+console.log(stop);
+
 const map = L.map("map", {
-    center: [ -41.2875, 174.776111 ], 
+    center: [stop.lat, stop.lng],
     zoom: 13,
     layers: [
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
     ]
 });
 
-let mrk = L.marker([ -41.2875, 174.776111 ]) .addTo(map);
-mrk.bindPopup("Wellington") .openPopup();
+let mrk = L.marker([stop.lat, stop.lng]).addTo(map);
+mrk.bindPopup("Wellington").openPopup();
 
 console.log(document.querySelector("#map"))
