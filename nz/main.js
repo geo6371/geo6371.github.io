@@ -44,6 +44,13 @@ nav.innerHTML += `
     }
 }
 
+nav.onchange = (evt) => {
+    let selected = evt.target.selectedIndex;
+    let options = evt.target.options;
+    let username =options[selected].value;
+    let link = `https://${username}.github.io/nz/index.html`;
+    console.log(username, link);
+};
 
 //<option value="geo6371">Wellington</option>
 //console.log(document.querySelector("#map"))
