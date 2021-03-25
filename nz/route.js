@@ -55,7 +55,7 @@ const ROUTE = [{
     user: "annakarolinv",
     wikipedia: "https://en.wikipedia.org/wiki/Doubtful_Sound_/_Patea"
 }, {
-    nr: 17,
+    nr: 19,
     name: "Picton",
     lat: -41.293056,
     lng: 174.001944,
@@ -159,13 +159,6 @@ const ROUTE = [{
     lng: 176.251389,
     user: "jo3093",
     wikipedia: "https://en.wikipedia.org/wiki/Champagne_Pool"
-}, {
-    nr: 19,
-    name: "Picton",
-    lat: -41.293056,
-    lng: 174.001944,
-    user: "maximilianender",
-    wikipedia: "https://en.wikipedia.org/wiki/Picton,_New_Zealand",
 }, {
     nr: 18,
     name: "Abel Tasman National Park",
