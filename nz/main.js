@@ -16,6 +16,8 @@ const map = L.map("map", {
     ]
 });
 
+
+
 console.log(ROUTE);
 for (let entry of ROUTE) {
     console.log(entry);
@@ -24,7 +26,7 @@ for (let entry of ROUTE) {
     mrk.bindPopup(`
         <h4>Stop ${entry.nr}: ${entry.name}</h4>
         <p><i class="fas fa-external-link-alt" mr-3></i> <a href="${entry.wikipedia}">Read about stop in Wikipedia</a></p>
-    `).openPopup();
+    `);
 
     if (entry.nr == 20) {
         map.setView([entry.lat, entry.lng], 13);
@@ -33,5 +35,5 @@ for (let entry of ROUTE) {
 }
 
 
-
+//<option value="geo6371">Wellington</option>
 //console.log(document.querySelector("#map"))
