@@ -49,9 +49,9 @@ nav.innerHTML += `
     }
 }
 
-//nav.options.selectedIndex = 20-1;
+nav.options.selectedIndex = 20-1;
 
-nav.selectedIndex = 20 - 1;
+//nav.selectedIndex = 20 - 1;
 nav.onchange = (evt) => {
     console.log(evt.target.selectedIndex);
     let selected = evt.target.selectedIndex;
@@ -65,18 +65,3 @@ nav.onchange = (evt) => {
 
 console.log(document.querySelector("#map"));
 
-
-
-/*nav.onchange = (evt) => {
-    let selected = evt.target.selectedIndex;
-    let options = evt.target.options;
-    let username =options[selected].value;
-    let link = `https://${username}.github.io/nz/index.html`;
-    console.log(username, link);
-
-    window.location.href = link;
-};
-*/
-
-//<option value="geo6371">Wellington</option>
-//console.log(document.querySelector("#map"))
