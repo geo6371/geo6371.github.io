@@ -32,8 +32,8 @@ ROUTE.sort((stop1, stop2) => {
 
 for (let entry of ROUTE) {
     console.log(entry);
-    
-nav.innerHTML += `
+
+    nav.innerHTML += `
     <option value="${entry.user}">Stop ${entry.nr} ${entry.name}</option>
 `;
 
@@ -49,9 +49,7 @@ nav.innerHTML += `
     }
 }
 
-nav.options.selectedIndex = 20-1;
-
-//nav.selectedIndex = 20 - 1;
+nav.options.selectedIndex = 20 - 1;
 nav.onchange = (evt) => {
     console.log(evt.target.selectedIndex);
     let selected = evt.target.selectedIndex;
@@ -64,4 +62,3 @@ nav.onchange = (evt) => {
 }
 
 console.log(document.querySelector("#map"));
-
