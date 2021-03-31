@@ -76,6 +76,7 @@ console.log(document.querySelector("#map"));
 
     window.location.href = link;
 };
+*/
 
 //<option value="geo6371">Wellington</option>
 //console.log(document.querySelector("#map"))
