@@ -24,9 +24,14 @@ let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 let awsLayer = L.featureGroup();
 layerControl.addOverlay(awsLayer, "Wetterstationen Tirol");
 // awsLayer.addTo(map);
+
 let snowLayer = L.featureGroup();
 layerControl.addOverlay(snowLayer, "Schneehöhen");
-snowLayer.addTo(map);
+//snowLayer.addTo(map);
+
+let windLayer = L.featureGroup();
+layerControl.addOverlay(windLayer, "Windgeschwindigkeit");
+windLayer.addTo(map);
 
 
 fetch(awsUrl)
@@ -53,6 +58,8 @@ fetch(awsUrl)
             <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
             `);
             marker.addTo(awsLayer);
+            
+            //snow
             if (station.properties.HS) {
                 let highlightClass = '';
                 if (station.properties.HS > 100) {
@@ -72,8 +79,29 @@ fetch(awsUrl)
                 });
                 snowMarker.addTo(snowLayer);
             }
+            
+            //wind
+            if (station.properties.WG) {
+                let highlightClass = '';
+                if (station.properties.WG > 5) {
+                    highlightClass = 'wind-5';
+                }
+                if (station.properties.WG > 10) {
+                    highlightClass = 'wind-10';
+                }
+                let windIcon = L.divIcon({
+                    html: `<div class="wind-label ${highlightClass}">${station.properties.WG}</div>`
+                })
+                let windMarker = L.marker([
+                    station.geometry.coordinates[1],
+                    station.geometry.coordinates[0]
+                ], {
+                    icon: windIcon
+                });
+                windMarker.addTo(windLayer);
+            }
         }
-        
+
         // set map view to all stations
         map.fitBounds(awsLayer.getBounds());
     });
