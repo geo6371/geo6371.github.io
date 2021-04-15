@@ -21,6 +21,8 @@ let layerControl = L.control.layers({
 
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
+// Durch diesen Code wird die Auswahl im Layer Control eingefügt
+
 let awsLayer = L.featureGroup();
 layerControl.addOverlay(awsLayer, "Wetterstationen Tirol");
 awsLayer.addTo(map);
