@@ -11,5 +11,8 @@ let map = L.map("map", {
 
 let layerControl = L.control.layers({
     "BasemapAT.grau": basemapGray,
-    "BasemapAT.orthofoto": L.tileLayer.provider('BasemapAT.orthofoto')
+    "BasemapAT.orthofoto": L.tileLayer.provider('BasemapAT.orthofoto'),
+    "BasemapAT.terrain": L.tileLayer.provider('BasemapAT.terrain'),
+    "BasemapAT.surface": L.tileLayer.provider('BasemapAT.surface'),
+    "OpenTopoMap": L.tileLayer.provider('OpenTopoMap')
 }) .addTo(map);
