@@ -23,6 +23,10 @@ let layerControl = L.control.layers({
 
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
+let awsLayer = L.featureGroup();
+layerControl.addOverlay(awsLayer, "Wetterstationen Tirol");
+awsLayer.addTo(map);
+
 fetch(awsUrl)
     .then(response => response.json())
     .then(json => {
@@ -34,6 +38,6 @@ fetch(awsUrl)
                     station.geometry.coordinates[1], station.geometry.coordinates[0]
                 ]);
             marker.bindPopup(`<h3>${station.properties.name}</h3>`)
-            marker.addTo(map);
+            marker.addTo(awsLayer);
         }
     });
