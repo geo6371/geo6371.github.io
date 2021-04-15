@@ -23,7 +23,7 @@ let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
 let awsLayer = L.featureGroup();
 layerControl.addOverlay(awsLayer, "Wetterstationen Tirol");
-// awsLayer.addTo(map);
+awsLayer.addTo(map);
 
 let snowLayer = L.featureGroup();
 layerControl.addOverlay(snowLayer, "Schneehöhen");
@@ -31,7 +31,7 @@ layerControl.addOverlay(snowLayer, "Schneehöhen");
 
 let windLayer = L.featureGroup();
 layerControl.addOverlay(windLayer, "Windgeschwindigkeit");
-windLayer.addTo(map);
+//windLayer.addTo(map);
 
 
 fetch(awsUrl)
@@ -52,8 +52,8 @@ fetch(awsUrl)
               <li>Seehöhe: ${station.geometry.coordinates[2]} m</li>
               <li>Temperatur: ${station.properties.LT || '?'} C</li>
               <li>Schneehöhe: ${station.properties.HS || '?'} cm</li>
-              <li>Windgeschwindigkeit: ${station.properties.WG || '?'} km/h</li>
-              <li>Windgeschwindrichtung: ${station.properties.WR || '?'}</li>
+              <li>Windgeschwindigkeit: ${station.properties.WG || '?'} m/s</li>
+              <li>Windrichtung: ${station.properties.WR || '?'} °</li>
             </ul>
             <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
             `);
