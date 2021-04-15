@@ -83,11 +83,11 @@ fetch(awsUrl)
             //wind
             if (station.properties.WG) {
                 let highlightClass = '';
-                if (station.properties.WG > 5) {
-                    highlightClass = 'wind-5';
-                }
                 if (station.properties.WG > 10) {
                     highlightClass = 'wind-10';
+                }
+                if (station.properties.WG > 20) {
+                    highlightClass = 'wind-20';
                 }
                 let windIcon = L.divIcon({
                     html: `<div class="wind-label ${highlightClass}">${station.properties.WG}</div>`
