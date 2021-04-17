@@ -2,9 +2,13 @@ h2 {
     text-align: center;
 }
 
+#source {
+    text-align: center;
+}
+
 #map {
     width: 90vw;
-    height: 90vw;
+    height: 50vw;
     border: solid black 1px;
     margin: auto;
 }
