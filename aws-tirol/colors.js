@@ -83,7 +83,41 @@ const COLORS = {
         col: "#fa3c96"
     }],
 
-    snowheight: [
-
-    ]
+    snowheight: [{
+        min: 0,
+        max: 1,
+        col: "#fff"
+    }, {
+        min: 1,
+        max: 10,
+        col: "#ffffb2"
+    }, {
+        min: 10,
+        max: 25,
+        col: "#b0ffbc"
+    }, {
+        min: 25,
+        max: 50,
+        col: "#8cffff"
+    }, {
+        min: 50,
+        max: 100,
+        col: "#19cdff"
+    }, {
+        min: 100,
+        max: 200,
+        col: "#1982ff"
+    }, {
+        min: 200,
+        max: 300,
+        col: "#0f5abe"
+    }, {
+        min: 300,
+        max: 400,
+        col: "#784bff"
+    }, {
+        min: 400,
+        max: 999,
+        col: "#cd0feb"
+    }]
 };
