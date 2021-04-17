@@ -26,10 +26,14 @@ h2 {
 
 .snow-100 {
     background-color: blue;
+    color: white;
+    text-shadow: none;
 }
 
 .snow-200 {
     background-color: red;
+    color: white;
+    text-shadow: none;
 }
 
 .wind-label {
@@ -49,10 +53,14 @@ h2 {
 
 .wind-10 {
     background-color: blue;
+    color: white;
+    text-shadow: none;
 }
 
 .wind-20 {
     background-color: red;
+    color: white;
+    text-shadow: none;
 }
 
 .temp-label {
@@ -72,8 +80,12 @@ h2 {
 
 .temp-0 {
     background-color: blue;
+    color: white;
+    text-shadow: none;
 }
 
 .temp-1 {
     background-color: green;
+    color: white;
+    text-shadow: none;
 }
