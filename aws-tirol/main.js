@@ -60,7 +60,7 @@ fetch(awsUrl)
             <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
             `);
             marker.addTo(awsLayer);
-            
+
             //snow
             if (station.properties.HS) {
                 let highlightClass = '';
@@ -81,7 +81,7 @@ fetch(awsUrl)
                 });
                 snowMarker.addTo(snowLayer);
             }
-            
+
             //wind
             if (station.properties.WG) {
                 let highlightClass = '';
