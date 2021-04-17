@@ -25,7 +25,7 @@ let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
 let awsLayer = L.featureGroup();
 layerControl.addOverlay(awsLayer, "Wetterstationen Tirol");
-awsLayer.addTo(map);
+//awsLayer.addTo(map);
 
 let snowLayer = L.featureGroup();
 layerControl.addOverlay(snowLayer, "Schneehöhen");
@@ -34,6 +34,10 @@ layerControl.addOverlay(snowLayer, "Schneehöhen");
 let windLayer = L.featureGroup();
 layerControl.addOverlay(windLayer, "Windgeschwindigkeit");
 //windLayer.addTo(map);
+
+let tempLayer = L.featureGroup();
+layerControl.addOverlay(tempLayer, "Lufttemperatur");
+tempLayer.addTo(map);
 
 
 fetch(awsUrl)
@@ -101,6 +105,27 @@ fetch(awsUrl)
                     icon: windIcon
                 });
                 windMarker.addTo(windLayer);
+            }
+
+            //Temperatur
+            if (station.properties.LT) {
+                let highlightClass = '';
+                if (station.properties.LT < 0) {
+                    highlightClass = 'temp-0';
+                }
+                if (station.properties.LT > 0) {
+                    highlightClass = 'temp-1';
+                }
+                let tempIcon = L.divIcon({
+                    html: `<div class="temp-label ${highlightClass}">${station.properties.LT}</div>`
+                })
+                let tempMarker = L.marker([
+                    station.geometry.coordinates[1],
+                    station.geometry.coordinates[0]
+                ], {
+                    icon: tempIcon
+                });
+                tempMarker.addTo(tempLayer);
             }
         }
 
