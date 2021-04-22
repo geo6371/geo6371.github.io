@@ -69,7 +69,6 @@ let newLabel = (coords, options) => {
     return marker;
 };
 
-
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
 fetch(awsUrl)
@@ -101,7 +100,7 @@ fetch(awsUrl)
             //snow
             if (typeof station.properties.HS == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: station.properties.HS,
+                    value: station.properties.HS.toFixed(0),
                     colors: COLORS.snowheight
                 });
                 marker.addTo(overlays.snowheight);
@@ -110,7 +109,7 @@ fetch(awsUrl)
             //wind
             if (typeof station.properties.WG == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: station.properties.WG,
+                    value: station.properties.WG.toFixed(0),
                     colors: COLORS.windspeed
                 });
                 marker.addTo(overlays.windspeed);
@@ -119,7 +118,7 @@ fetch(awsUrl)
             //Temperatur
             if (typeof station.properties.LT == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: station.properties.LT,
+                    value: station.properties.LT.toFixed(1),
                     colors: COLORS.temperature
                 });
                 marker.addTo(overlays.temperature);
@@ -128,7 +127,8 @@ fetch(awsUrl)
             //Windrichtung
             if (typeof station.properties.WR == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: station.properties.WR
+                    value: station.properties.WR.toFixed(0),
+                    colors: COLORS.temperature
                 });
                 marker.addTo(overlays.winddirection);
             }
