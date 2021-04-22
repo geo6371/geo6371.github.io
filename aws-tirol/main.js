@@ -37,8 +37,16 @@ let layerControl = L.control.layers({
     "Schneehöhe (cm)": overlays.snowheight,
     "Windgeschwindigkeit (m/s)": overlays.windspeed,
     "Windrichtung (°)": overlays.winddirection
+}, {
+    collapsed: false
 }).addTo(map);
 overlays.temperature.addTo(map);
+
+//Maßstab
+L.control.scale({
+    imperial: false
+}).addTo(map);
+
 
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
@@ -69,7 +77,7 @@ fetch(awsUrl)
             marker.addTo(overlays.stations);
 
             //snow
-            if (station.properties.HS) {
+            if (typeof station.properties.HS == "number") {
                 let highlightClass = '';
                 if (station.properties.HS > 100) {
                     highlightClass = 'snow-100';
@@ -92,7 +100,7 @@ fetch(awsUrl)
             }
 
             //wind
-            if (station.properties.WG) {
+            if (typeof station.properties.WG == "number") {
                 let highlightClass = '';
                 if (station.properties.WG > 10) {
                     highlightClass = 'wind-10';
@@ -115,7 +123,7 @@ fetch(awsUrl)
             }
 
             //Temperatur
-            if (station.properties.LT) {
+            if (typeof station.properties.LT == "number") {
                 let highlightClass = '';
                 if (station.properties.LT < 0) {
                     highlightClass = 'temp-0';
