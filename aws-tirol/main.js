@@ -48,6 +48,14 @@ L.control.scale({
 }).addTo(map);
 
 
+let newLabel = (coords, options) => {
+    console.log("Koordinaten coords: ", coords);
+    console.log("Optionsobjekt:", options);
+    let marker = L.marker([coords[1], coords[0]]);
+    console.log("Marker:", marker);
+    return marker;
+};
+
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
 fetch(awsUrl)
@@ -124,6 +132,13 @@ fetch(awsUrl)
 
             //Temperatur
             if (typeof station.properties.LT == "number") {
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.LT
+                });
+                marker.addTo(overlays.temperature);
+                
+                /*
+                
                 let highlightClass = '';
                 if (station.properties.LT < 0) {
                     highlightClass = 'temp-0';
@@ -143,7 +158,10 @@ fetch(awsUrl)
                     icon: tempIcon
                 });
                 tempMarker.addTo(overlays.temperature);
+                 */
             }
+
+           
         }
 
         // Setzt map view auf alle Stationen
