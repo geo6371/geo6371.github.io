@@ -53,8 +53,7 @@ let newLabel = (coords, options) => {
         html: `<div>${options.value}</div>`,
         className: "text-label"
     })
-    let marker = L.marker([coords[1], coords[0]], 
-    {
+    let marker = L.marker([coords[1], coords[0]], {
         icon: label
     });
     return marker;
@@ -91,48 +90,18 @@ fetch(awsUrl)
 
             //snow
             if (typeof station.properties.HS == "number") {
-                let highlightClass = '';
-                if (station.properties.HS > 100) {
-                    highlightClass = 'snow-100';
-                }
-                if (station.properties.HS > 200) {
-                    highlightClass = 'snow-200';
-                }
-                // https://leafletjs.com/reference-1.7.1.html#divicon
-                let snowIcon = L.divIcon({
-                    html: `<div class="snow-label ${highlightClass}">${station.properties.HS}</div>`
-                })
-                // https://leafletjs.com/reference-1.7.1.html#marker
-                let snowMarker = L.marker([
-                    station.geometry.coordinates[1],
-                    station.geometry.coordinates[0]
-                ], {
-                    icon: snowIcon
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.HS
                 });
-                snowMarker.addTo(overlays.snowheight);
+                marker.addTo(overlays.snowheight);
             }
 
             //wind
             if (typeof station.properties.WG == "number") {
-                let highlightClass = '';
-                if (station.properties.WG > 10) {
-                    highlightClass = 'wind-10';
-                }
-                if (station.properties.WG > 20) {
-                    highlightClass = 'wind-20';
-                }
-                // https://leafletjs.com/reference-1.7.1.html#divicon
-                let windIcon = L.divIcon({
-                    html: `<div class="wind-label ${highlightClass}">${station.properties.WG}</div>`
-                })
-                // https://leafletjs.com/reference-1.7.1.html#marker
-                let windMarker = L.marker([
-                    station.geometry.coordinates[1],
-                    station.geometry.coordinates[0]
-                ], {
-                    icon: windIcon
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.WG
                 });
-                windMarker.addTo(overlays.windspeed);
+                marker.addTo(overlays.windspeed);
             }
 
             //Temperatur
@@ -141,32 +110,15 @@ fetch(awsUrl)
                     value: station.properties.LT
                 });
                 marker.addTo(overlays.temperature);
-                
-                /*
-                
-                let highlightClass = '';
-                if (station.properties.LT < 0) {
-                    highlightClass = 'temp-0';
-                }
-                if (station.properties.LT > 0) {
-                    highlightClass = 'temp-1';
-                }
-                // https://leafletjs.com/reference-1.7.1.html#divicon
-                let tempIcon = L.divIcon({
-                    html: `<div class="temp-label ${highlightClass}">${station.properties.LT}</div>`
-                })
-                // https://leafletjs.com/reference-1.7.1.html#marker
-                let tempMarker = L.marker([
-                    station.geometry.coordinates[1],
-                    station.geometry.coordinates[0]
-                ], {
-                    icon: tempIcon
-                });
-                tempMarker.addTo(overlays.temperature);
-                 */
             }
 
-           
+            //Windrichtung
+            if (typeof station.properties.WR == "number") {
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.WR
+                });
+                marker.addTo(overlays.winddirection);
+            }
         }
 
         // Setzt map view auf alle Stationen
