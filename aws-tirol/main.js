@@ -16,6 +16,7 @@ let overlays = {
     snowheight: L.featureGroup(),
     windspeed: L.featureGroup(),
     winddirection: L.featureGroup(),
+    humidity: L.featureGroup(),
 };
 
 
@@ -36,7 +37,8 @@ let layerControl = L.control.layers({
     "Temperatur (°C)": overlays.temperature,
     "Schneehöhe (cm)": overlays.snowheight,
     "Windgeschwindigkeit (m/s)": overlays.windspeed,
-    "Windrichtung (°)": overlays.winddirection
+    "Windrichtung (°)": overlays.winddirection,
+    "Relative Luftfeuchtigkeit (%)": overlays.humidity,
 }, {
     collapsed: false
 }).addTo(map);
@@ -98,7 +100,7 @@ fetch(awsUrl)
             `);
             marker.addTo(overlays.stations);
 
-            //snow
+            //Schneehöhe
             if (typeof station.properties.HS == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
                     value: station.properties.HS.toFixed(0),
@@ -108,7 +110,7 @@ fetch(awsUrl)
                 marker.addTo(overlays.snowheight);
             }
 
-            //wind
+            //windgeschwindigkeit
             if (typeof station.properties.WG == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
                     value: station.properties.WG.toFixed(0),
@@ -137,6 +139,16 @@ fetch(awsUrl)
                     station: station.properties.name
                 });
                 marker.addTo(overlays.winddirection);
+            }
+
+            //relative Luftfeuchtigkeit
+            if (typeof station.properties.RH == "number") {
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.RH.toFixed(0),
+                    colors: COLORS.humidity,
+                    station: station.properties.name
+                });
+                marker.addTo(overlays.humidity);
             }
         }
 
