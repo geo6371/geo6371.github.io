@@ -32,7 +32,9 @@ let layerControl = L.control.layers({
         L.tileLayer.provider('BasemapAT.orthofoto'),
         L.tileLayer.provider('BasemapAT.overlay')
     ])
-}, {
+}, 
+//Beschriftung Overlay-Menü
+{
     "Wetterstationen Tirol": overlays.stations,
     "Temperatur (°C)": overlays.temperature,
     "Schneehöhe (cm)": overlays.snowheight,
@@ -42,13 +44,14 @@ let layerControl = L.control.layers({
 }, {
     collapsed: false
 }).addTo(map);
-overlays.temperature.addTo(map);
+overlays.winddirection.addTo(map);
 
 //Maßstab
 L.control.scale({
     imperial: false
 }).addTo(map);
 
+//getColor-Funktion
 let getColor = (value, colorRamp) => {
     //console.log("Wert:", value, "Palette:", colorRamp);
     for (let rule of colorRamp) {
@@ -56,11 +59,22 @@ let getColor = (value, colorRamp) => {
             return rule.col;
         }
     }
-    return "black";
+    return "silver";
+};
+
+//getDirection-Funktion
+let getDirection = (value, directionRamp) => {
+    //console.log("Wert:", value, "Richtung:", directionRamp);
+    for (let rule of directionRamp) {
+        if (value >= rule.min && value < rule.max) {
+            return rule.dir;
+        }
+    }
+    return "?";
 };
 
 let newLabel = (coords, options) => {
-    let color = getColor(options.value, options.colors)
+    let color = getColor(options.value, options.colors);
     let label = L.divIcon({
         html: `<div style="background-color:${color}">${options.value}</div>`,
         className: "text-label"
@@ -86,6 +100,8 @@ fetch(awsUrl)
                 station.geometry.coordinates[0]
             ]);
             let formattedDate = new Date(station.properties.date);
+            
+            //Angegebene Daten im Popup (nach Anklicken)
             marker.bindPopup(`
             <h3>${station.properties.name}</h3>
             <ul>
@@ -134,9 +150,9 @@ fetch(awsUrl)
             //Windrichtung
             if (typeof station.properties.WR == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: station.properties.WR.toFixed(0),
-                    // muss noch in colors.js eingefügt werden
-                    colors: COLORS.snowheight,
+                    value: getDirection(station.properties.WR, DIRECTIONS),
+                    //Hier müsste noch eine andere Farbe eingetragen werden. Bisher fällt es aus dem Raster, weil der Wert N, NW etc. entspricht. Deswegen benutzt er die sonstige Farbe, die als Workaround auf silver gestellt wurde.  
+                    colors: COLORS.windspeed,
                     station: station.properties.name
                 });
                 marker.addTo(overlays.winddirection);
