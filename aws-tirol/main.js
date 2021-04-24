@@ -22,28 +22,28 @@ let overlays = {
 
 // https://leafletjs.com/reference-1.7.1.html#control
 let layerControl = L.control.layers({
-    "BasemapAT.grau": basemapGray,
-    // https://leafletjs.com/reference-1.7.1.html#tilelayer
-    "BasemapAT.orthofoto": L.tileLayer.provider('BasemapAT.orthofoto'),
-    "BasemapAT.surface": L.tileLayer.provider('BasemapAT.surface'),
-    // https://leafletjs.com/reference-1.7.1.html#layergroup
-    "BasemapAT.overlay+ortho": L.layerGroup([
+        "BasemapAT.grau": basemapGray,
         // https://leafletjs.com/reference-1.7.1.html#tilelayer
-        L.tileLayer.provider('BasemapAT.orthofoto'),
-        L.tileLayer.provider('BasemapAT.overlay')
-    ])
-}, 
-//Beschriftung Overlay-Menü
-{
-    "Wetterstationen Tirol": overlays.stations,
-    "Temperatur (°C)": overlays.temperature,
-    "Schneehöhe (cm)": overlays.snowheight,
-    "Windgeschwindigkeit (m/s)": overlays.windspeed,
-    "Windrichtung (°)": overlays.winddirection,
-    "Relative Luftfeuchtigkeit (%)": overlays.humidity,
-}, {
-    collapsed: false
-}).addTo(map);
+        "BasemapAT.orthofoto": L.tileLayer.provider('BasemapAT.orthofoto'),
+        "BasemapAT.surface": L.tileLayer.provider('BasemapAT.surface'),
+        // https://leafletjs.com/reference-1.7.1.html#layergroup
+        "BasemapAT.overlay+ortho": L.layerGroup([
+            // https://leafletjs.com/reference-1.7.1.html#tilelayer
+            L.tileLayer.provider('BasemapAT.orthofoto'),
+            L.tileLayer.provider('BasemapAT.overlay')
+        ])
+    },
+    //Beschriftung Overlay-Menü
+    {
+        "Wetterstationen Tirol": overlays.stations,
+        "Temperatur (°C)": overlays.temperature,
+        "Schneehöhe (cm)": overlays.snowheight,
+        "Windgeschwindigkeit (m/s)": overlays.windspeed,
+        "Windrichtung (°)": overlays.winddirection,
+        "Relative Luftfeuchtigkeit (%)": overlays.humidity,
+    }, {
+        collapsed: false
+    }).addTo(map);
 overlays.winddirection.addTo(map);
 
 //Maßstab
@@ -100,7 +100,7 @@ fetch(awsUrl)
                 station.geometry.coordinates[0]
             ]);
             let formattedDate = new Date(station.properties.date);
-            
+
             //Angegebene Daten im Popup (nach Anklicken)
             marker.bindPopup(`
             <h3>${station.properties.name}</h3>
