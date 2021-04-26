@@ -52,7 +52,7 @@ L.control.scale({
 
 // Change default options
 let rainviewer = L.control.rainviewer({
-    position: 'bottomleft',
+    position: 'topright',
     nextButtonText: '>',
     playStopButtonText: 'Start | Stop',
     prevButtonText: '<',
