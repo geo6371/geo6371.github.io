@@ -54,7 +54,7 @@ L.control.scale({
 let rainviewer = L.control.rainviewer({
     position: 'bottomleft',
     nextButtonText: '>',
-    playStopButtonText: 'Start / Stop',
+    playStopButtonText: 'Start | Stop',
     prevButtonText: '<',
     positionSliderLabelText: "Stunde:",
     opacitySliderLabelText: "Deckkraft:",
