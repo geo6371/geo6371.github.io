@@ -19,7 +19,6 @@ let overlays = {
     humidity: L.featureGroup(),
 };
 
-
 // https://leafletjs.com/reference-1.7.1.html#control
 let layerControl = L.control.layers({
         "BasemapAT.grau": basemapGray,
@@ -50,6 +49,19 @@ overlays.winddirection.addTo(map);
 L.control.scale({
     imperial: false
 }).addTo(map);
+
+// Change default options
+let rainviewer = L.control.rainviewer({ 
+    position: 'bottomleft',
+    nextButtonText: '>',
+    playStopButtonText: 'Play/Stop',
+    prevButtonText: '<',
+    positionSliderLabelText: "Hour:",
+    opacitySliderLabelText: "Opacity:",
+    animationInterval: 500,
+    opacity: 0.5
+});
+rainviewer.addTo(map);
 
 //getColor-Funktion
 let getColor = (value, colorRamp) => {
@@ -172,3 +184,5 @@ fetch(awsUrl)
         // Setzt map view auf alle Stationen
         map.fitBounds(overlays.stations.getBounds());
     });
+
+        
