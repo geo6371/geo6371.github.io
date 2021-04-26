@@ -51,7 +51,7 @@ L.control.scale({
 }).addTo(map);
 
 // Change default options
-let rainviewer = L.control.rainviewer({ 
+let rainviewer = L.control.rainviewer({
     position: 'bottomleft',
     nextButtonText: '>',
     playStopButtonText: 'Play/Stop',
@@ -184,5 +184,3 @@ fetch(awsUrl)
         // Setzt map view auf alle Stationen
         map.fitBounds(overlays.stations.getBounds());
     });
-
-        
