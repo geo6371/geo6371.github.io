@@ -17,7 +17,8 @@ let baselayers = {
 let overlays = {
     busLines: L.featureGroup(),
     busStops: L.featureGroup(),
-    pedAreas: L.featureGroup()
+    pedAreas: L.featureGroup(),
+    touristPoints: L.featureGroup()
 };
 
 // Karte initialisieren und auf Wiens Wikipedia Koordinate blicken
@@ -40,13 +41,15 @@ let layerControl = L.control.layers({
 }, {
     "Liniennetz Vienna Sightseeing": overlays.busLines,
     "Haltestellen Vienna Sightseeing": overlays.busStops,
-    "Fußgängerzonen": overlays.pedAreas
+    "Fußgängerzonen": overlays.pedAreas,
+    "Sehenswürdigkeiten": overlays.touristPoints
 }).addTo(map);
 
 // alle Overlays nach dem Laden anzeigen
 overlays.busLines.addTo(map);
 overlays.busStops.addTo(map);
 overlays.pedAreas.addTo(map);
+overlays.touristPoints.addTo(map);
 
 let drawBusStop = (geojsonData) => {
     L.geoJson(geojsonData, {
@@ -109,7 +112,24 @@ let drawPedAreas = (geojsonData) => {
     }).addTo(overlays.pedAreas);
 }
 
-//attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>'
+let drawTouristPoints = (geojsonData) => {
+    L.geoJson(geojsonData, {
+        onEachFeature: (feature, layer) => {
+            layer.bindPopup(`<strong>${feature.properties.NAME}</strong>
+            <hr>
+            Adresse: ${feature.properties.ADRESSE}`)
+        },
+        pointToLayer: (geoJsonPoint, latlng) => {
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: 'icons/sehenswuerdigogd.png',
+                    iconSize: [35, 35]
+                })
+            })
+        },
+        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>'
+    }).addTo(overlays.touristPoints);
+}
 
 for (let config of OGDWIEN) {
     console.log("Config: ", config.data);
@@ -123,6 +143,8 @@ for (let config of OGDWIEN) {
                 drawBusLines(geojsonData);
             } else if (config.title == "Fußgängerzonen") {
                 drawPedAreas(geojsonData);
+            } else if (config.title == "Sehenswürdigkeiten") {
+                drawTouristPoints(geojsonData);
             }
         })
 }
