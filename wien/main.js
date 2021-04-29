@@ -125,7 +125,7 @@ let drawTouristPoints = (geojsonData) => {
             return L.marker(latlng, {
                 icon: L.icon({
                     iconUrl: 'icons/sehenswuerdigogd.png',
-                    iconSize: [35, 35]
+                    iconSize: [30, 30]
                 })
             })
         },
