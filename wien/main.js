@@ -61,7 +61,7 @@ let drawBusStop = (geojsonData) => {
                 })
             })
         }
-    }).addTo(map);
+    }).addTo(overlays.busStops);
 }
 
 /* fetch("data/TOURISTIKHTSVSLOGD.json")
