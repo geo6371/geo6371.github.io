@@ -72,7 +72,7 @@ let drawBusLines = (geojsonData) => {
         onEachFeature: (feature, layer) => {
             layer.bindPopup(`<strong>${feature.properties.LINE_NAME}</strong>`)
         },
-        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>, <a href= "https://mapicons.mapsmarker.com">Maps Icons Collection</a>'
+        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>'
     }).addTo(overlays.busLines);
 }
 
