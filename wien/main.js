@@ -88,13 +88,28 @@ let drawBusLines = (geojsonData) => {
 
 
 let drawPedAreas = (geojsonData) => {
+    console.log('Zone: ', geojsonData);
     L.geoJson(geojsonData, {
+        style: (feature) => {
+            return {
+                stroke: true,
+                color: "silver",
+                fillColor: "yellow",
+                fillOpacity: 0.3
+            }
+        },
         onEachFeature: (feature, layer) => {
-            layer.bindPopup(`<strong>${feature.properties.ADRESSE}</strong>`)
+            layer.bindPopup(`<strong>Fußgängerzone ${feature.properties.ADRESSE}</strong>
+            <hr>
+            ${feature.properties.ZEITRAUM || "?"} <br>
+            ${feature.properties.AUSN_TEXT || "?"}
+            `);
         },
         attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>'
     }).addTo(overlays.pedAreas);
 }
+
+//attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>'
 
 for (let config of OGDWIEN) {
     console.log("Config: ", config.data);
