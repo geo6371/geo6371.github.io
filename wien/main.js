@@ -60,28 +60,10 @@ let drawBusStop = (geojsonData) => {
                     iconSize: [35, 35]
                 })
             })
-        }
+        },
+        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>, <a href= "https://mapicons.mapsmarker.com">Maps Icons Collection</a>'
     }).addTo(overlays.busStops);
 }
-
-/* fetch("data/TOURISTIKHTSVSLOGD.json")
-    .then(response => response.json())
-    .then(stations => {
-        L.geoJson(stations, {
-            onEachFeature: (feature, layer) => {
-                layer.bindPopup(feature.properties.STAT_NAME)
-            },
-            pointToLayer: (geoJsonPoint, latlng) => {
-                return L.marker(latlng, {
-                    icon: L.icon({
-                        iconUrl: 'icons/busstop.png',
-                        iconSize: [35, 35]
-                    })
-                })
-            }
-        }).addTo(map);
-    })
-    */
 
 for (let config of OGDWIEN) {
     console.log("Config: ", config.data);
