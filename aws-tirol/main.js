@@ -43,7 +43,7 @@ let layerControl = L.control.layers({
     }, {
         collapsed: false
     }).addTo(map);
-overlays.winddirection.addTo(map);
+overlays.stations.addTo(map);
 
 //Maßstab
 L.control.scale({
@@ -112,6 +112,7 @@ fetch(awsUrl)
                 station.geometry.coordinates[0]
             ]);
             let formattedDate = new Date(station.properties.date);
+            let WindrichtungsPopup = getDirection(station.properties.WR, DIRECTIONS);
 
             //Angegebene Daten im Popup (nach Anklicken)
             marker.bindPopup(`
@@ -122,7 +123,7 @@ fetch(awsUrl)
               <li>Temperatur: ${station.properties.LT || '?'} °C</li>
               <li>Schneehöhe: ${station.properties.HS || '?'} cm</li>
               <li>Windgeschwindigkeit: ${station.properties.WG || '?'} m/s</li>
-              <li>Windrichtung: ${station.properties.WR || '?'} °</li>
+              <li>Windrichtung: ${WindrichtungsPopup || '?'}</li>
               <li>Relative Luftfeuchtigkeit: ${station.properties.RH || '?'} %</li>
             </ul>
             <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
