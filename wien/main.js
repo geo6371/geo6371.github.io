@@ -96,11 +96,11 @@ for (let config of OGDWIEN) {
                 drawBusStop(geojsonData);
             }
 
-            if (config.title == "Liniennetz Vienna Sightseeing") {
+            else if (config.title == "Liniennetz Vienna Sightseeing") {
                 drawBusLines(geojsonData);
             }
 
-            if (config.title == "Fußgängerzonen") {
+            else if (config.title == "Fußgängerzonen") {
                 drawPedAreas(geojsonData);
             }
         })
