@@ -160,5 +160,10 @@ for (let config of OGDWIEN) {
         })
 }
 
-// Assuming your map instance is in a variable called map
+// Hash - Koordinaten in URL
 var hash = new L.Hash(map);
+
+// Initialise the reachability plugin
+L.control.reachability({
+    apiKey: '5b3ce3597851110001cf62484633093d081b45a49bed3aed34fbb10b'
+}).addTo(map);
