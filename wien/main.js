@@ -166,12 +166,21 @@ var hash = new L.Hash(map);
 //Reachability-Plugin
 // Function to style the reachability polygons
 function styleIntervals(feature) {
+    let color = "";
+    let range = feature.properties.Range;
+    if (feature.properties.Measure === "time") {
+        color = (COLORS.minutes[range]);
+    } else if (feature.properties.Measure === "distance") {
+        color = (COLORS.kilometers[range]);
+    } else {
+        color = "black"
+    }
     return {
-        color: '#ff0000',
+        color: color,
         opacity: 0.5,
         fillOpacity: 0.2
     };
-}
+};
 
 // Initialise the reachability plugin
 L.control.reachability({
