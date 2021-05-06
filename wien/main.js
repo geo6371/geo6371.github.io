@@ -31,6 +31,14 @@ let map = L.map("map", {
     ]
 });
 
+// Minimap einbauen
+var miniMap = new L.Control.MiniMap(
+    L.tileLayer.provider("BasemapAT.basemap"), {
+        toggleDisplay: true,
+        minimized: false
+    }
+).addTo(map);
+
 // Kartenhintergründe und Overlays zur Layer-Control hinzufügen
 let layerControl = L.control.layers({
     "basemap.at Standard": baselayers.standard,
