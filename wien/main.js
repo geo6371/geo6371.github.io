@@ -163,6 +163,16 @@ for (let config of OGDWIEN) {
 // Hash - Koordinaten in URL
 var hash = new L.Hash(map);
 
+//Reachability-Plugin
+// Function to style the reachability polygons
+function styleIntervals(feature) {
+    return {
+        color: '#ff0000',
+        opacity: 0.5,
+        fillOpacity: 0.2
+    };
+}
+
 // Initialise the reachability plugin
 L.control.reachability({
     apiKey: '5b3ce3597851110001cf62484633093d081b45a49bed3aed34fbb10b',
@@ -181,5 +191,6 @@ L.control.reachability({
     travelModeButton3Content: '',
     travelModeButton3StyleClass: 'fa fa-male fa-2x',
     travelModeButton4Content: '',
-    travelModeButton4StyleClass: 'fa fa-wheelchair fa-2x'
+    travelModeButton4StyleClass: 'fa fa-wheelchair fa-2x',
+    styleFn: styleIntervals
 }).addTo(map);
