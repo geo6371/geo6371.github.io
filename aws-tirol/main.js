@@ -3,6 +3,7 @@ let basemapGray = L.tileLayer.provider('BasemapAT.grau');
 
 // https://leafletjs.com/reference-1.7.1.html#map-example
 let map = L.map("map", {
+    fullscreenControl: true,
     center: [47, 11],
     zoom: 9,
     layers: [
@@ -185,3 +186,14 @@ fetch(awsUrl)
         // Setzt map view auf alle Stationen
         map.fitBounds(overlays.stations.getBounds());
     });
+
+// Minimap einbauen
+var miniMap = new L.Control.MiniMap(
+    L.tileLayer.provider("OpenStreetMap.DE"), {
+        toggleDisplay: true,
+        minimized: false
+    }
+).addTo(map);
+
+// Hash - Koordinaten in URL
+var hash = new L.Hash(map);
