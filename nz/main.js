@@ -9,8 +9,9 @@ let stop = {
 console.log(stop);
 
 const map = L.map("map", {
-    //center: [stop.lat, stop.lng],
-    //zoom: 13,
+    fullscreenControl: true,
+    center: [stop.lat, stop.lng],
+    zoom: 13,
     layers: [
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
     ]
@@ -29,6 +30,14 @@ ROUTE.sort((stop1, stop2) => {
     }
 });
 
+// Minimap einbauen
+var miniMap = new L.Control.MiniMap(
+    L.tileLayer.provider("CyclOSM"), {
+        toggleDisplay: true,
+        minimized: false,
+        zoomLevelOffset: -5
+    }
+).addTo(map);
 
 for (let entry of ROUTE) {
     console.log(entry);
