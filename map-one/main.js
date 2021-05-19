@@ -9,7 +9,7 @@ const map = L.map("map", {
     center: [15, 0],
     zoom: 2,
     layers: [
-        baselayers.darkMode
+        baselayers.standard
     ]
 });
 
