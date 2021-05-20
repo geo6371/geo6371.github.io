@@ -81,3 +81,5 @@ const drawTrack = (nr) => {
 
 const selectedTrack = 25;
 drawTrack(selectedTrack);
+
+console.log('biketirol json: ', BIKETIROL);
