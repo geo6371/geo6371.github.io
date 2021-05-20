@@ -12,7 +12,7 @@ let overlays = {
 const map = L.map("map", {
     fullscreenControl: true,
     center: [15, 0],
-    zoom: 2,
+    zoom: 3,
     layers: [
         baselayers.standard
     ]
@@ -55,4 +55,4 @@ console.log(selected);
 
 //Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
 L.geoJson(COUNTRY).addTo(overlays.coTwo).addTo(map)
-
+map.fitBounds(overlays.coTwo.getBounds());
