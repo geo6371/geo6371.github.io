@@ -50,6 +50,8 @@ const elevationControl = L.control.elevation({
 
 
 const drawTrack = (nr) => {
+    elevationControl.clear();
+    overlays.tracks.clearLayers();
     console.log('Track: ', nr);
     let gpxTrack = new L.GPX(`tracks/${nr}.gpx`, {
         async: true,
@@ -95,6 +97,6 @@ for (let track of BIKETIROL) {
 }
 
 pulldown.onchange = () => {
-    console.log('changed!', pulldown.value)
+    // console.log('changed!', pulldown.value)
     drawTrack(pulldown.value);
 };
