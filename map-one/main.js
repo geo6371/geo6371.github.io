@@ -56,3 +56,10 @@ console.log(selected);
 //Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
 L.geoJson(COUNTRY).addTo(overlays.coTwo).addTo(map)
 map.fitBounds(overlays.coTwo.getBounds());
+
+overlays.coTwo.addTo(map)
+
+//PopUp mit Name, max_height, min_height, total_dist
+overlays.coTwo.bindPopup(`
+<h3>Name des Landes</h3>
+    `);
