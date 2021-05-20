@@ -4,6 +4,11 @@ let baselayers = {
     terrain: L.tileLayer.provider("OpenTopoMap"),
 };
 
+// Overlays für die Themen zum Ein- und Ausschalten definieren
+let overlays = {
+    coTwo: L.featureGroup()
+};
+
 const map = L.map("map", {
     fullscreenControl: true,
     center: [15, 0],
@@ -17,8 +22,8 @@ let layerControl = L.control.layers({
     "Standard": baselayers.standard,
     "Dark Mode": baselayers.darkMode,
     "Relief": baselayers.terrain,
-//}, {
-  //  "Liniennetz Vienna Sightseeing": overlays.country,
+}, {
+    "CO2": overlays.coTwo,
 }).addTo(map);
 
 //So komme ich an die CO2-Daten
@@ -48,5 +53,6 @@ for (let coTwo of CODATA) {
 console.log(selected);
 }
 
-//Länder-Polygone hinzugefuegt
-L.geoJson(COUNTRY).addTo(map);
+//Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
+L.geoJson(COUNTRY).addTo(overlays.coTwo).addTo(map)
+
