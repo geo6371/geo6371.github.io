@@ -42,6 +42,13 @@ let layerControl = L.control.layers({
 // Overlay mit GPX-Track anzeigen
 overlays.tracks.addTo(map);
 
+const elevationControl = L.control.elevation({
+    elevationDiv: "#profile",
+    followMarker: false,
+    theme: 'lime-theme',
+}).addTo(map);
+
+
 const drawTrack = (nr) => {
     console.log('Track: ', nr);
     let gpxTrack = new L.GPX(`tracks/${nr}.gpx`, {
@@ -59,7 +66,17 @@ const drawTrack = (nr) => {
     gpxTrack.on("loaded", () => {
         console.log('loaded gpx');
         map.fitBounds(gpxTrack.getBounds());
-    })
+        //PopUp mit Name, max_height, min_height, total_dist
+        gpxTrack.bindPopup(`
+        <h3>${gpxTrack.get_name()}</h3>
+            <ul>
+            <li>Streckenlänge: ${gpxTrack.get_distance()} m</li>  
+            <li>maximale Höhe: ${gpxTrack.get_elevation_max()} m</li>
+            <li>minimale Höhe: ${gpxTrack.get_elevation_min()} m</li>
+            </ul>
+            `);
+    });
+    elevationControl.load(`tracks/${nr}.gpx`);
 };
 
 const selectedTrack = 25;
