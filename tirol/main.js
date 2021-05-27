@@ -169,6 +169,11 @@ const updateTexts = (nr) => {
             console.log("unsere Etappe", etappe);
             for (let key in etappe) {
                 console.log("key:", key, "value:", etappe[key]);
+                //gibt es ein Element in HTML mit der id von "key"?
+                if (document.querySelector(`#text-${key}`)) {
+                    console.log("YAY!", key, etappe[key]);
+                    document.querySelector(`#text-${key}`).innerHTML = etappe[key];
+                }
             }
         }
         
