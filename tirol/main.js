@@ -32,15 +32,30 @@ let map = L.map("map", {
 //Wikipedia-Artikel zeichnen
 const drawWikipedia = (bounds) => {
     console.log(bounds);
-    let url =`https://secure.geonames.org/wikipediaBoundingBoxJSON?north=${bounds.getNorth()}&south=${bounds.getSouth()}&east=${bounds.getEast()}&west=${bounds.getWest()}&username=geo6371&lang=de&maxRows=30`;
+    let url = `https://secure.geonames.org/wikipediaBoundingBoxJSON?north=${bounds.getNorth()}&south=${bounds.getSouth()}&east=${bounds.getEast()}&west=${bounds.getWest()}&username=geo6371&lang=de&maxRows=30`;
     console.log(url);
+
+    let icons = {
+        adm1st: "wikipedia_administration.png",
+        adm2nd: "wikipedia_administration.png",
+        adm3rd: "wikipedia_administration.png",
+        airport: "wikipedia_helicopter.png",
+        city: "wikipedia_smallcity.png",
+        glacier: "wikipedia_glacier-2.png",
+        landmark: "wikipedia_landmark.png",
+        railwaystation: "wikipedia_train.png",
+        river: "wikipedia_river-2.png",
+        mountain: "wikipedia_mountains.png",
+        waterbody: "wikipedia_lake.png",
+        default: "wikipedia_information.png",
+    };
 
     fetch(url).then(
         response => response.json()
     ).then(jsonData => {
         console.log(jsonData)
 
-    //Artikel Marker erzeugen
+        //Artikel Marker erzeugen
         for (let article of jsonData.geonames) {
             let mrk = L.marker([article.lat, article.lng]);
             mrk.addTo(overlays.wikipedia);
@@ -58,9 +73,9 @@ const drawWikipedia = (bounds) => {
                 ${img}
                 <p>${article.summary}</p>
                 <a target="Wikipedia" href="https://${article.wikipediaUrl}">Wikipedia-Artikel</a>
-            `)
+            `);
         }
-    }); 
+    });
 };
 
 // Kartenhintergründe und Overlays zur Layer-Control hinzufügen
@@ -116,8 +131,8 @@ const drawTrack = (nr) => {
             </ul>
             `);
 
-            // Wikipedia-Artikel zeichnen
-            drawWikipedia(gpxTrack.getBounds());
+        // Wikipedia-Artikel zeichnen
+        drawWikipedia(gpxTrack.getBounds());
     });
     elevationControl.load(`tracks/${nr}.gpx`);
 };
