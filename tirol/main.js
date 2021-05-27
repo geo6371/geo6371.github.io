@@ -28,6 +28,12 @@ let map = L.map("map", {
         baselayers.grau
     ]
 })
+
+//Wikipedia-Artikel zeichnen
+const drawWikipedia = (bounds) => {
+    console.log(bounds)
+};
+
 // Kartenhintergründe und Overlays zur Layer-Control hinzufügen
 let layerControl = L.control.layers({
     "basemap.at Standard": baselayers.standard,
@@ -80,6 +86,9 @@ const drawTrack = (nr) => {
             <li>minimale Höhe: ${gpxTrack.get_elevation_min()} m</li>
             </ul>
             `);
+
+            // Wikipedia-Artikel zeichnen
+            drawWikipedia(gpxTrack.getBounds());
     });
     elevationControl.load(`tracks/${nr}.gpx`);
 };
