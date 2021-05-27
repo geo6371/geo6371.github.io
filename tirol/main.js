@@ -34,6 +34,12 @@ const drawWikipedia = (bounds) => {
     console.log(bounds);
     let url =`https://secure.geonames.org/wikipediaBoundingBoxJSON?north=${bounds.getNorth()}&south=${bounds.getSouth()}&east=${bounds.getEast()}&west=${bounds.getWest()}&username=geo6371&lang=de&maxRows=30`;
     console.log(url);
+
+    fetch(url).then(
+        response => response.json()
+    ).then(jsonData => {
+        console.log(jsonData)
+    }); 
 };
 
 // Kartenhintergründe und Overlays zur Layer-Control hinzufügen
