@@ -32,9 +32,9 @@ let map = L.map("map", {
 //Wikipedia-Artikel zeichnen
 let articleDrawn = {};
 const drawWikipedia = (bounds) => {
-    console.log(bounds);
+    //console.log(bounds);
     let url = `https://secure.geonames.org/wikipediaBoundingBoxJSON?north=${bounds.getNorth()}&south=${bounds.getSouth()}&east=${bounds.getEast()}&west=${bounds.getWest()}&username=geo6371&lang=de&maxRows=30`;
-    console.log(url);
+    //console.log(url);
 
     let icons = {
         adm1st: "wikipedia_administration.png",
@@ -54,14 +54,14 @@ const drawWikipedia = (bounds) => {
     fetch(url).then(
         response => response.json()
     ).then(jsonData => {
-        console.log(jsonData)
+        //console.log(jsonData)
 
         //Artikel Marker erzeugen
         for (let article of jsonData.geonames) {
             //hab ich Artikel schon gezeichnet?
             if (articleDrawn[article.wikipediaUrl]) {
                 // Ja, nicht noch einmal
-                console.log("schon gesehen", article.wikipediaUrl);
+                //console.log("schon gesehen", article.wikipediaUrl);
                 continue;
             } else {
                 articleDrawn[article.wikipediaUrl] = true;
@@ -128,7 +128,7 @@ const elevationControl = L.control.elevation({
 const drawTrack = (nr) => {
     elevationControl.clear();
     overlays.tracks.clearLayers();
-    console.log('Track: ', nr);
+    //console.log('Track: ', nr);
     let gpxTrack = new L.GPX(`tracks/${nr}.gpx`, {
         async: true,
         marker_options: {
@@ -142,7 +142,7 @@ const drawTrack = (nr) => {
         },
     }).addTo(overlays.tracks);
     gpxTrack.on("loaded", () => {
-        console.log('loaded gpx');
+        //console.log('loaded gpx');
         map.fitBounds(gpxTrack.getBounds());
         //PopUp mit Name, max_height, min_height, total_dist
         gpxTrack.bindPopup(`
@@ -160,9 +160,9 @@ const drawTrack = (nr) => {
 const selectedTrack = 25;
 drawTrack(selectedTrack);
 
-console.log('biketirol json: ', BIKETIROL);
+//console.log('biketirol json: ', BIKETIROL);
 let pulldown = document.querySelector("#pulldown");
-console.log('Pulldown: ', pulldown);
+//console.log('Pulldown: ', pulldown);
 for (let track of BIKETIROL) {
     if (selectedTrack == track.nr) {
         selected = 'selected';
