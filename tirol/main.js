@@ -43,7 +43,13 @@ const drawWikipedia = (bounds) => {
     //Artikel Marker erzeugen
         for (let article of jsonData.geonames) {
             let mrk = L.marker([article.lat, article.lng]);
-            mrk.addTo(overlays.wikipedia)
+            mrk.addTo(overlays.wikipedia);
+
+            //PopUp erzeugen
+            let img = "";
+            if (article.thumbnailImg) {
+                img = `<img src="${article.thumbnailImg}" alt="thumbnail">`;
+            }
         }
     }); 
 };
