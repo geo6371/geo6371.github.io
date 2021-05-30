@@ -149,8 +149,8 @@ const drawTrack = (nr) => {
         <h3>${gpxTrack.get_name()}</h3>
             <ul>
             <li>Streckenlänge: ${gpxTrack.get_distance().toFixed(0)} m</li>  
-            <li>maximale Höhe: ${gpxTrack.get_elevation_max()} m</li>
-            <li>minimale Höhe: ${gpxTrack.get_elevation_min()} m</li>
+            <li>maximale Höhe: ${gpxTrack.get_elevation_max().toFixed(0)} m</li>
+            <li>minimale Höhe: ${gpxTrack.get_elevation_min().toFixed(0)} m</li>
             </ul>
             `);
     });
